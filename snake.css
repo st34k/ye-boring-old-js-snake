@@ -2,13 +2,24 @@
 
 @import url("reset_styles.css");
 
+:root {
+	font-size: 100%;
+	background-color: hsla(294, 20%, 77%, 1);
+}
+
+h1 {
+	font-size: 5rem;
+	text-align: center;
+	padding: 0.2rem 0;
+}
+
 div#main_container {
-	width: 90%;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-content: center;
 }
 
 canvas#game_canvas {
-	
+	background-color: hsl(206, 20%, 77%);
 }

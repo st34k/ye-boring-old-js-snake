@@ -1,0 +1,13 @@
+{
+  "name": "js_snake",
+  "version": "1.0.0",
+  "description": "",
+  "main": "snake",
+  "scripts": {
+    "start": "npm run open",
+    "test": "test"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC"
+}
