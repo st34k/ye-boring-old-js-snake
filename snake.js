@@ -31,7 +31,7 @@ function initSnake() {
   snakeCtx.fillStyle = SNAKE.fillColor
   snakeCtx.strokeStyle = SNAKE.outlineColor
 
-  for (let i = 0; i < SNAKE.size; i++) {
+  for (let i = 0; i < SNAKE.initLength; i++) {
     snake.push({ x, y })
     snakeCtx.fillRect(x, y, pixelSize, pixelSize)
     snakeCtx.strokeRect(x, y, pixelSize, pixelSize)
@@ -41,7 +41,7 @@ function initSnake() {
 
 function drawSnake() {
   const { pixelSize } = SNAKE
-  snakeCtx.fillStyle = SNAKE.fillColor
+  snakeCtx.fillStyle = SNAKE.fillColor``
   snakeCtx.strokeStyle = SNAKE.outlineColor
 
   snake.forEach(s => {

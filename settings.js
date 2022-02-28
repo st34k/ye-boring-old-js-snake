@@ -1,14 +1,18 @@
 export const SETTINGS = {
   BOARD: {
-    width: 500,
-    height: 500,
+    DEFAULT_WIDTH: 500,
+    DEFAULT_HEIGHT: 500,
     fillColor: 'white',
-    borderColor: 'black'
+    borderColor: 'black',
+    pixelSize: 5
   },
   SNAKE: {
     fillColor: 'lightblue',
     outlineColor: 'darkblue',
-    size: 5,
-    pixelSize: 5
+    initLength: 5
+  },
+  DEFAULT_STYLES: {
+    fillColor: 'white',
+    strokeStyle: 'black'
   }
 }
