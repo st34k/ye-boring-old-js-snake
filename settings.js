@@ -1,10 +1,10 @@
 export const SETTINGS = {
   BOARD: {
-    DEFAULT_WIDTH: 500,
-    DEFAULT_HEIGHT: 500,
-    fillColor: 'white',
-    borderColor: 'black',
-    pixelSize: 5
+    WIDTH: 500,
+    HEIGHT: 500,
+    DEFAULT_BG: 'white',
+    DEFAULT_OL: 'black',
+    PIXEL_SIZE: 5
   },
   SNAKE: {
     fillColor: 'lightblue',

@@ -1,100 +1,39 @@
 import { SETTINGS } from './settings.js';
 
-const { BOARD, SNAKE } = SETTINGS
+const { SNAKE } = SETTINGS
 
-const snakeBoard = document.getElementById('gameCanvas')
-const snakeCtx = snakeBoard.getContext('2d')
+export class Snake {
+  ctx
+  constructor() {
+    this.snakeCoords = []
+    this.fillColor = SNAKE.fillColor
+    this.outlineColor = SNAKE.outlineColor
+    // this.snake = []
+    //
+    // this.initSnake()
+  }
 
-snakeBoard.width = BOARD.width
-snakeBoard.height = BOARD.height
-const snake = []
+  initSnake(ctx) {
+    this.ctx = ctx
+    const boardWidth = ctx.board.width
+    const boardHeight = ctx.board.height
 
-// draw the board
-function prepareBoard() {
-  snakeCtx.fillStyle = BOARD.fillColor
-  snakeCtx.strokeStyle = BOARD.borderColor
+    // set initial coords for snake to be in middle of board
+    let [x, y] = [boardWidth / 2, boardHeight / 2]
 
-  snakeCtx.fillRect(0, 0, snakeBoard.width, snakeBoard.height)
-  snakeCtx.strokeRect(0, 0, snakeBoard.width, snakeBoard.height)
-}
+    for (let i = 0; i < SNAKE.initLength; i++) {
+      // populate snake coords array
+      this.snakeCoords.push({ x, y })
+      x -= ctx.pixelSize
+    }
 
-function clearBoard() {
-  snakeCtx.fillRect(0, 0, snakeBoard.width, snakeBoard.height)
-}
+    this.drawSnake()
+  }
 
-
-function initSnake() {
-  let x = BOARD.width / 2
-  const y = BOARD.height / 2
-  const { pixelSize } = SNAKE
-
-  snakeCtx.fillStyle = SNAKE.fillColor
-  snakeCtx.strokeStyle = SNAKE.outlineColor
-
-  for (let i = 0; i < SNAKE.initLength; i++) {
-    snake.push({ x, y })
-    snakeCtx.fillRect(x, y, pixelSize, pixelSize)
-    snakeCtx.strokeRect(x, y, pixelSize, pixelSize)
-    x -= pixelSize
+  drawSnake() {
+    this.snakeCoords.forEach(s => {
+      const { x, y } = s
+      this.ctx.board.drawPixel(x, y, this.fillColor, this.outlineColor)
+    })
   }
 }
-
-function drawSnake() {
-  const { pixelSize } = SNAKE
-  snakeCtx.fillStyle = SNAKE.fillColor``
-  snakeCtx.strokeStyle = SNAKE.outlineColor
-
-  snake.forEach(s => {
-    const { x, y } = s
-    snakeCtx.fillRect(x, y, pixelSize, pixelSize)
-    snakeCtx.strokeRect(x, y, pixelSize, pixelSize)
-  })
-}
-
-function moveLeft() {
-  const head = {x: snake[0].x - 5, y: snake[0].y }
-  snake.unshift(head)
-  snake.pop()
-  clearBoard()
-  drawSnake()
-}
-
-function moveRight() {
-  const head = {x: snake[0].x + 5, y: snake[0].y }
-  snake.unshift(head)
-  snake.pop()
-  clearBoard()
-  drawSnake()
-}
-
-function moveUp() {
-  const head = {x: snake[0].x, y: snake[0].y - 5 }
-  snake.unshift(head)
-  snake.pop()
-  clearBoard()
-  drawSnake()
-}
-
-function moveDown() {
-  const head = { x: snake[0].x, y: snake[0].y + 5 }
-  snake.unshift(head)
-  snake.pop()
-  clearBoard()
-  drawSnake()
-}
-
-const movement = {
-  ArrowLeft: moveLeft,
-  ArrowRight: moveRight,
-  ArrowDown: moveDown,
-  ArrowUp: moveUp
-}
-
-prepareBoard()
-initSnake()
-moveLeft()
-
-document.addEventListener('keydown', (e) => {
-  console.log('key', e.key)
-  movement[e.key]()
-})
